@@ -7,31 +7,28 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 public class Solution {
-
     static void plusMinus(int[] arr) {
         int m = arr.length;
-        int pos=0;
-        int neg=0;
-        int zero=0;
-        for (int j=0; j<m; j++){
-
+        int pos = 0;
+        int neg = 0;
+        int zero = 0;
+        for (int j = 0; j < m; j++){
             if (arr[j]>0){
                 pos++;
             }
             else if (arr[j]<0){
                 neg++;
             }
-            else if (arr[j]==0){
+            else if (arr[j] == 0){
                 zero++;
             }
         }  
-        double posRatio = ((double)pos/m*1000000)/1000000; //if (integer/integerr) the anwer will be 0.0
+        double posRatio = ((double)pos/m*1000000)/1000000; //if (integer/integer) the answer will be 0.0
         double negRatio = ((double)neg/m*1000000)/1000000;
         double zeroRatio =((double)zero/m*1000000)/1000000;
         System.out.println(posRatio);
         System.out.println(negRatio);
-        System.out.println(zeroRatio);
-    
+        System.out.println(zeroRatio);    
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -39,9 +36,7 @@ public class Solution {
     public static void main(String[] args) {
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
         int[] arr = new int[n];
-
         String[] arrItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
@@ -49,9 +44,7 @@ public class Solution {
             int arrItem = Integer.parseInt(arrItems[i]);
             arr[i] = arrItem;
         }
-
         plusMinus(arr);
-
         scanner.close();
     }
 }
