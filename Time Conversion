@@ -1,0 +1,55 @@
+import java.io.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    /*
+     Midnight is 12:00:00AM on a 12-hour clock, and 00:00:00 on a 24-hour clock. 
+     Noon is 12:00:00PM on a 12-hour clock, and 12:00:00 on a 24-hour clock.
+     */
+    static String timeConversion(String s) {
+        String[] str = s.split(":");
+        String time="";
+        String hour = str[0];
+        String minute = str[1];
+        String second = str[2];
+        String secondTime = second.substring(0,2);
+        String subSecond = second.substring(2,4);
+        int intHour = Integer.parseInt(hour)+12;
+        if (subSecond.equals("AM")){
+            if(hour.equals("12")){
+                time = "00"+":"+minute+":"+secondTime;
+            }
+            else{
+                time = hour+":"+minute+":"+secondTime;
+            }  
+        }
+        else if (subSecond.equals("PM")){
+            if (hour.equals("12")){
+                time = "12"+":"+minute+":"+secondTime; 
+            }
+            else{
+                time = (Integer.toString(intHour))+":"+minute+":"+secondTime; 
+            }                      
+        }
+        return time;
+    }
+
+    private static final Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = scan.nextLine();
+
+        String result = timeConversion(s);
+
+        bw.write(result);
+        bw.newLine();
+
+        bw.close();
+    }
+}
