@@ -1,0 +1,58 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static long repeatedString(String s, long n) {
+        long q = n / s.length();
+        int r = (int)(n % s.length());
+        long count = 0;
+        char[] ch = new char[s.length()];
+        for (int i = 0; i < s.length(); i++) { 
+            ch[i] = s.charAt(i); 
+        } 
+  
+        for (char c: ch){
+            if (c == 'a'){
+                count++;
+            }
+        }
+        long total = q*count;
+        if(r==0){
+            return total;
+        } else{
+            String part = s.substring(0,r);
+            for (char c:part.toCharArray()){
+                if(c=='a'){
+                    total++;
+                }
+            }
+            return total;
+        }  
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = scanner.nextLine();
+
+        long n = scanner.nextLong();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        long result = repeatedString(s, n);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
